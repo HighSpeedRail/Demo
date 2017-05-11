@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Click or drag</title>
+</head>
+<body>
+    <button>click me</button>
+    <script>
+        var btn = document.getElementsByTagName('button')[0],
+            fn,
+            time = 0;
+        btn.onclick = function () {
+            alert('这是之前有人绑定好的click事件');
+        };
+        fn = btn.onclick;
+        btn.onclick = null; //把之前绑定的点击事件赋值给一个变量，然后把click事件置空
+        btn.onmousedown = function () {
+            time = new Date().getTime();
+        };
+        btn.onmouseup = function () {
+            if ((new Date().getTime() - time) > 1000) {
+                alert('点击大于1000毫秒就算是拖拽事件');
+            } else {
+                fn(); //小于1000毫秒就算是点击事件，时间在上面判断里随意改
+            }
+        }
+    </script>
+</body>
+</html>
