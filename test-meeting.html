@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>meeting</title>
+</head>
+<body>
+<h1 id="h1"></h1>
+<script>
+    function check(str) {
+        if (fn(str, ['a', 'b']) < 1) return false;
+        if (fn(str, ['a', 'e', 'f']) !== 2) return false;
+        if (fn(str, ['b', 'c']) === 1) return false;
+        if (fn(str, ['a', 'd']) !== 1) return false;
+        if (fn(str, ['c', 'd']) !== 1) return false;
+        if (fn(str, ['d']) === 0 && fn(str, ['e']) === 1) return false;
+        return true;
+    }
+
+    function fn(str, arr) {
+        var sum = 0;
+        var len = arr.length;
+        for (var i = 0; i < len; i++) {
+            if (str.indexOf(arr[i]) !== -1) sum++;
+        }
+        return sum;
+    }
+
+    var result_ary = [];
+    var result = [];
+    var strAry = ['a', 'b', 'c', 'd', 'e', 'f'];
+    var len = strAry.length;
+
+    for (var i = 0; i < len; i++) {
+        result_ary = result_ary.concat(combination(strAry, i + 1));
+    }
+
+    var len = result_ary.length;
+    for (var i = 0; i < len; i++) {
+        var cur = result_ary[i].join();
+        if (check(cur)) result.push(cur);
+    }
+    console.log(result);
+    document.getElementById('h1').innerHTML = '答案是: ' + result.join('').replace(/,/g, '');
+
+    function combination(arr, num, fun) {
+        if (arr.length < num || num > 10)
+        {
+            return [];
+        }
+        var variable = ["a", "b", "c", "d", "e", "f", "g", "h", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u"];
+        var replaceStr = "#$#";
+        var str = " var arr=arguments[0]; var fun=arguments[1];  var ret=[]; for (var a = 0; a < arr.length; a++) { "+replaceStr+" } return ret;";
+        for (var i = 1; i < num; i++) {
+            str = str.replace(replaceStr, " for (var " + variable[i] + " =" + variable[i - 1] + "+ 1; " + variable[i] + " < arr.length; " + variable[i] + "++) { " + replaceStr + "  }")
+        }
+        var temp = " var temp= []; ";
+        for (var i = 0; i < num; i++) {
+            temp += "temp.push(arr[" + variable[i] + "]); ";
+        }
+        if (fun) {
+            temp += " ret.push(fun(temp)); ";
+        }
+        else {
+            temp += " ret.push(temp); ";
+        }
+        str = str.replace(replaceStr, temp);
+        //console.log(str);
+        return (new Function(str)).apply(null, [arr, fun]);
+    }
+</script>
+</body>
+</html>
