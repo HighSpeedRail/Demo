@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Animation</title>
+    <style>
+        span {position: relative; display: inline-block; opacity: 0;}
+        .span1 {animation: span1 5s infinite 0s linear both;}
+        .span2 {animation: span2 5s infinite 0s linear forwards;}
+        .span3 {animation: span3 5s infinite 0s linear forwards;}
+        .span4 {animation: span4 5s infinite 0s linear forwards;}
+        .span5 {animation: span5 5s infinite 0s linear forwards;}
+        .span6 {animation: span6 5s infinite 0s linear forwards;}
+        @keyframes span1 {
+            0% {opacity: 0; transform: rotate(-45deg); top: -10px;}
+            17% {opacity: 1; transform: rotate(0); top: 0;}
+            100% {opacity: 1;}
+        }
+        @keyframes span2 {
+            17% {opacity: 0; transform: rotate(-45deg); top: -10px;}
+            34% {opacity: 1; transform: rotate(0); top: 0;}
+            100% {opacity: 1;}
+        }
+        @keyframes span3 {
+            34% {opacity: 0; transform: rotate(-45deg); top: -10px;}
+            50% {opacity: 1; transform: rotate(0); top: 0;}
+            100% {opacity: 1;}
+        }
+        @keyframes span4 {
+            50% {opacity: 0; transform: rotate(-45deg); top: -10px;}
+            67% {opacity: 1; transform: rotate(0); top: 0;}
+            100% {opacity: 1;}
+        }
+        @keyframes span5 {
+            67% {opacity: 0; transform: rotate(-45deg); top: -10px;}
+            84% {opacity: 1; transform: rotate(0); top: 0;}
+            100% {opacity: 1;}
+        }
+        @keyframes span6 {
+            84% {opacity: 0; transform: rotate(-45deg); top: -10px;}
+            100% {opacity: 1; transform: rotate(0); top: 0;}
+            100% {opacity: 1;}
+        }
+    </style>
+</head>
+<body>
+<p>
+    <span class="span1">立</span>
+    <span class="span2">即</span>
+    <span class="span3">成</span>
+    <span class="span4">为</span>
+    <span class="span5">版</span>
+    <span class="span6">主</span>
+</p>
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body, html {margin: 0; padding: 0;}
+        ul, li {list-style: none;}
+        .clear:after {content: ''; display: block; clear: both;}
+        .content {margin: 200px auto; position: relative;}
+        .content li {float: left; margin: 0 10px;}
+        .content li img {width: 224px; height: 336px;}
+        .content .img {width: 224px; height: 336px; position: absolute; background: url("https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1498552314&di=ee2a36cbc87418d14fb37268a8625f5a&imgtype=jpg&er=1&src=http%3A%2F%2Fcdnq.duitang.com%2Fuploads%2Fitem%2F201507%2F04%2F20150704223530_zWVC5.jpeg") no-repeat; background-size: 100%;}
+        .content .img img {width: 100%; height: 100%;}
+        .content .img span {position: absolute; right: 10px; top: 10px;}
+    </style>
+</head>
+<body>
+    <div class="content">
+        <ul class="clear">
+            <li><img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1497956094207&di=7b7e7c27db1e802aed89a97959d65461&imgtype=0&src=http%3A%2F%2Fimg4q.duitang.com%2Fuploads%2Fitem%2F201505%2F10%2F20150510055619_ZhsMQ.thumb.224_0.jpeg" alt="图片一"></li>
+            <li><img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1497956094207&di=7b7e7c27db1e802aed89a97959d65461&imgtype=0&src=http%3A%2F%2Fimg4q.duitang.com%2Fuploads%2Fitem%2F201505%2F10%2F20150510055619_ZhsMQ.thumb.224_0.jpeg" alt="图片二"></li>
+            <li><img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1497956094207&di=7b7e7c27db1e802aed89a97959d65461&imgtype=0&src=http%3A%2F%2Fimg4q.duitang.com%2Fuploads%2Fitem%2F201505%2F10%2F20150510055619_ZhsMQ.thumb.224_0.jpeg" alt="图片三"></li>
+        </ul>
+        <div class="img">
+            <img src="" alt="" style="border: 0;">
+            <span></span>
+        </div>
+    </div>
+    <script>
+        var content = document.getElementsByClassName('content')[0];
+        var div_img = content.getElementsByClassName('img')[0];
+        var img = content.getElementsByClassName('img')[0].getElementsByTagName('img')[0];
+        var span = content.getElementsByClassName('img')[0].getElementsByTagName('span')[0];
+        content.onmousemove = function (e) {
+            if (e.target.nodeName.toUpperCase() === 'IMG') {
+                console.log(e.target.getAttribute('src'));
+                img.src = e.target.getAttribute('src');
+                span.innerHTML = e.target.getAttribute('alt');
+                console.log(e);
+                div_img.style.left = e.clientX - 120 + 'px';
+                div_img.style.top = e.clientY - 550 + 'px';
+            }
+        };
+        content.onmouseout = function (e) {
+            if (e.target.nodeName.toUpperCase() === 'IMG') {
+                img.src = '';
+                span.innerHTML = '';
+            }
+        }
+    </script>
+</body>
+</html>

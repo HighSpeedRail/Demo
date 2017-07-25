@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Elevator</title>
+    <!--<link rel="stylesheet" href="./style.css">-->
+    <style>
+        html, body, ul, li, p {margin: 0; padding: 0; list-style: none;}
+        .build {width: 1000px; margin: 0 auto; position: relative;}
+        p {border-top: 5px solid #000; height: 130px; font-size: 30px; line-height: 130px; position: relative;}
+        p .outline {display: inline-block; width: 100px; height: 130px; border-left: 5px dashed #ccc; border-right: 5px dashed #ccc; position: absolute; left: 300px;}
+        p .btn {float: right; display: inline-block; width: 30px; height: 30px; border: 2px solid #ccc; line-height: 30px; text-align: center; margin: 20px 5px; cursor: pointer;}
+        .elevator {border: 5px solid #000; position: absolute; width: 100px; height: 130px; left: 300px; top: 540px; font-size: 0; overflow: hidden; transition: 2s linear;}
+        .elevator span {display: inline-block; height: 130px; background: #ccc; position: absolute;}
+        .elevator span:nth-child(1) {width: 48px; border-right: 2px solid #000; left: 0; top: 0;}
+        .elevator span:nth-child(2) {width: 48px; border-left: 2px solid #000; left: 50px; top: 0;}
+        .clicking {background-color: #000; color: #fff;}
+        .target_floor {padding-left: 200px;}
+        .target_floor span {display: inline-block; width: 50px; height: 50px; border: 2px solid #ccc; margin: 5px; font-size: 40px; line-height: 50px; text-align: center; cursor: pointer;}
+        @keyframes open_close_left {
+            0%, 100% {left: 0;}
+            50% {left: -50px;}
+        }
+        @keyframes open_close_right {
+            0%, 100% {left: 50px;}
+            50% {left: 100px;}
+        }
+    </style>
+</head>
+<body>
+<div class="build">
+    <p>5F <span class="outline"></span><span class="btn" data-direction="down">↓</span></p>
+    <p>4F <span class="outline"></span><span class="btn" data-direction="down">↓</span><span class="btn" data-direction="up">↑</span></p>
+    <p>3F <span class="outline"></span><span class="btn" data-direction="down">↓</span><span class="btn" data-direction="up">↑</span></p>
+    <p>2F <span class="outline"></span><span class="btn" data-direction="down">↓</span><span class="btn" data-direction="up">↑</span></p>
+    <p style="border-bottom: 5px solid #000;">1F <span class="outline"></span><span class="btn" data-direction="up">↑</span></p>
+    <div class="elevator">
+        <span></span>
+        <span></span>
+    </div>
+    <div class="target_floor"><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span></div>
+</div>
+<script src="../jquery-3.2.1.min.js"></script>
+<!--<script src="./js.js"></script>-->
+<script>
+    eval(function(p,a,c,k,e,r){e=function(c){return c.toString(36)};if('0'.replace(0,e)==0){while(c--)r[e(c)]=k[c];k=[function(e){return r[e]||e}];e=function(){return'[0346-9a-rt-v]'};c=1};while(c--)if(k[c])p=p.replace(new RegExp('\\b'+e(c)+'\\b','g'),k[c]);return p}('6 j(){$(\'.3 7:a-b(1)\').4(\'c\',\'open_close_left k 1\');$(\'.3 7:a-b(2)\').4(\'c\',\'open_close_right k 1\');l(6(){$(\'.3 7:a-b(1)\').4(\'c\',\'\');$(\'.3 7:a-b(2)\').4(\'c\',\'\')},2000);$(\'.m\').n(\'d\');$(\'.0 7\').n(\'d\')}$(\'.m\').o(6(){8 0=e($(9).parent().p());8 f=$(9).attr(\'data-f\');$(9).q(\'d\');g(0,\'up_down\',f)});$(\'.0 7\').o(6(){8 0=e($(9).p());$(9).q(\'d\');g(0,\'3\')});8 $3=$(\'.3\');6 g(0){8 h=r.t(e($3.4(\'u\'))/v-5);if(0===h)return;8 i=r.t(0-h);$3.4(\'transition\',i+\'s linear\').4(\'u\',(5-0)*v+\'px\');l(6(){j()},i*1000)}',[],32,'target_floor|||elevator|css||function|span|var|this|nth|child|animation|clicking|parseInt|direction|move|cur_floor|duration|open_close|2s|setTimeout|btn|removeClass|click|html|addClass|Math||abs|top|135'.split('|'),0,{}))
+</script>
+</body>
+</html>

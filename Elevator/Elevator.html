@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Elevator</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+<div class="build">
+    <p>5F <span class="outline"></span><span class="btn" data-direction="down">↓</span></p>
+    <p>4F <span class="outline"></span><span class="btn" data-direction="down">↓</span><span class="btn" data-direction="up">↑</span></p>
+    <p>3F <span class="outline"></span><span class="btn" data-direction="down">↓</span><span class="btn" data-direction="up">↑</span></p>
+    <p>2F <span class="outline"></span><span class="btn" data-direction="down">↓</span><span class="btn" data-direction="up">↑</span></p>
+    <p style="border-bottom: 5px solid #000;">1F <span class="outline"></span><span class="btn" data-direction="up">↑</span></p>
+    <div class="elevator">
+        <span></span>
+        <span></span>
+    </div>
+    <div class="target_floor"><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span></div>
+</div>
+<script src="../jquery-3.2.1.min.js"></script>
+<script src="./js.js"></script>
+</body>
+</html>

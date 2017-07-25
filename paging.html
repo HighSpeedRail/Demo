@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Paging</title>
+    <style>
+        body, html {margin: 0; padding: 0;}
+        ul, li {list-style: none;}
+        #content {width: 500px; height: 500px; background-color: lightblue; line-height: 500px; text-align: center; font-size: 50px;}
+        .clear:after {content: ''; display: block; clear: both;}
+        #list li {width: 50px; height: 20px; border: 1px solid blue; float: left; margin: 0 5px; text-align: center; cursor: pointer; user-select: none;}
+    </style>
+</head>
+<body>
+    <div id="content"></div>
+    <ul id="list" class="clear">
+        <li id="prevPage" data-index="-1">上一页</li>
+        <li id="nextPage" data-index="-2">下一页</li>
+        <li id="lastPage" data-index="-3">尾页</li>
+        <li contenteditable="true" style="cursor: auto; text-align: left; padding: 0 5px;"></li>
+        <li id="go">go</li>
+    </ul>
+    <script>
+        var content = document.getElementById('content');
+        var list = document.getElementById('list');
+        var go = document.getElementById('go');
+        var data = ['111', '222', '333', '444', '555', '666', '777', '888', '999'];
+        var len = data.length;
+        var flag = 0;
+        var target_li = null;
+        function init(index) {
+            var frag = document.createDocumentFragment();
+            var ele = document.getElementById('prevPage').nextElementSibling;
+            while (ele !== document.getElementById('nextPage')) {
+                var ele_flag = ele.nextElementSibling;
+                list.removeChild(ele);
+                ele = ele_flag;
+            }
+            for (var i = 0; i < 3; i++) {
+                //前面加省略号
+                if (index !== 0 && i === 0) {
+                    var li_flag = document.createElement('li');
+                    li_flag.innerHTML = '...';
+                    li_flag.style.borderColor = 'transparent';
+                    li_flag.style.cursor = 'auto';
+                    frag.appendChild(li_flag);
+                }
+                //加列表项
+                var li = document.createElement('li');
+                li.innerHTML = index * 3 + i + 1;
+                li.setAttribute('data-index', i);
+                if (i === 0) {
+                    li.style.borderColor = 'transparent';
+                    li.style.cursor = 'auto';
+                    target_li = li;
+                    content.innerHTML = data[index * 3 + i];
+                }
+                frag.appendChild(li);
+                //后面加省略号
+                if (i === 2 && index !== parseInt(len/3) - 1) {
+                    li_flag = document.createElement('li');
+                    li_flag.innerHTML = '...';
+                    li_flag.style.borderColor = 'transparent';
+                    li_flag.style.cursor = 'auto';
+                    frag.appendChild(li_flag);
+                }
+            }
+            list.insertBefore(frag, document.getElementById('nextPage'));
+        }
+        init(flag);
+        list.onclick = function (e) {
+            if (e.target.nodeName === 'LI') {
+                var li = e.target;
+                var data_index = li.getAttribute('data-index');
+                if (data_index === '-1') {
+                    if (flag === 0 && target_li.getAttribute('data-index') === '0') {
+                        alert('已经是第一页了');
+                        return;
+                    }
+                }
+                if (data_index === '-2') {
+                    if (target_li.getAttribute('data-index') === '2') {
+                        if (flag === parseInt(len/3) - 1) {
+                            alert('已经是最后一页了');
+                        } else {
+                            init(++flag, 'next');
+                        }
+                    } else {
+                        target_li.style.borderColor = 'blue';
+                        target_li.style.curson = 'pointer';
+                        target_li = target_li.nextSibling;
+                        target_li.style.borderColor = 'transparent';
+                        target_li.style.curson = 'auto';
+                        content.innerHTML = data[flag * 3 + +target_li.getAttribute('data-index')];
+                    }
+                }
+            }
+        }
+    </script>
+</body>
+</html>

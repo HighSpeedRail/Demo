@@ -1,0 +1,20 @@
+html, body, ul, li, p {margin: 0; padding: 0; list-style: none;}
+.build {width: 1000px; margin: 0 auto; position: relative;}
+p {border-top: 5px solid #000; height: 130px; font-size: 30px; line-height: 130px; position: relative;}
+p .outline {display: inline-block; width: 100px; height: 130px; border-left: 5px dashed #ccc; border-right: 5px dashed #ccc; position: absolute; left: 300px;}
+p .btn {float: right; display: inline-block; width: 30px; height: 30px; border: 2px solid #ccc; line-height: 30px; text-align: center; margin: 20px 5px; cursor: pointer;}
+.elevator {border: 5px solid #000; position: absolute; width: 100px; height: 130px; left: 300px; top: 540px; font-size: 0; overflow: hidden; transition: 2s linear;}
+.elevator span {display: inline-block; height: 130px; background: #ccc; position: absolute;}
+.elevator span:nth-child(1) {width: 48px; border-right: 2px solid #000; left: 0; top: 0;}
+.elevator span:nth-child(2) {width: 48px; border-left: 2px solid #000; left: 50px; top: 0;}
+.clicking {background-color: #000; color: #fff;}
+.target_floor {padding-left: 200px;}
+.target_floor span {display: inline-block; width: 50px; height: 50px; border: 2px solid #ccc; margin: 5px; font-size: 40px; line-height: 50px; text-align: center; cursor: pointer;}
+@keyframes open_close_left {
+    0%, 100% {left: 0;}
+    50% {left: -50px;}
+}
+@keyframes open_close_right {
+    0%, 100% {left: 50px;}
+    50% {left: 100px;}
+}

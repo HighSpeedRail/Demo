@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Form</title>
+    <style>
+        html, body {margin: 0; padding: 0; width: 100%;}
+        div {margin: 50px auto; width: 500px;}
+        div label {display: inline-block; width: 70px; margin: 5px;}
+        div input {width: 400px; margin: 5px 0;}
+        div button {margin: 10px 60px; padding: 3px 5px;}
+        div p {height: 15px; margin: 0; text-align: center;}
+        div span {margin-left: 5px; text-align: center; cursor: pointer; width: 120px; display: inline-block;}
+    </style>
+</head>
+<body>
+    <div>
+        <label for="user_name">昵称：</label>
+        <input type="text" placeholder="5-10位数字或字母">
+        <br>
+        <label for="tel_num">手机号：</label>
+        <input type="tel">
+        <br>
+        <label for="verify_code">验证码：</label>
+        <input type="text" style="width: 280px;"><span>点击获取验证码</span>
+        <p></p>
+        <br>
+        <button>注册提交</button><button>初始化</button>
+    </div>
+    <script>
+        var inputs = document.getElementsByTagName('input');
+        var verify = document.getElementsByTagName('span')[0];
+        var warning = document.getElementsByTagName('p')[0];
+        var buttons = document.getElementsByTagName('button');
+        buttons[0].onclick = function () {
+            warning.innerHTML = '';
+            warning.style.color = 'red';
+            if (!/[0-9a-zA-Z]{5,10}/.test(inputs[0].value)) {
+                warning.innerHTML = '昵称不符合规则';
+                return;
+            }
+            if (!/1(3|4|5|7|8)\d{9}/.test(inputs[1].value)) {
+                warning.innerHTML = '手机号不合法';
+                return;
+            }
+            if (verify.innerHTML !== inputs[2].value) {
+                warning.innerHTML = '验证码错误';
+                return;
+            }
+            warning.style.color = 'blue';
+            warning.innerHTML = '注册成功';
+        };
+        verify.onclick = function () {
+            var verify_string = '1234567890abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+            var len = verify_string.length;
+            var verify_code = '';
+            for (var i = 0; i < 4; i++) {
+                var random = Math.random() * (len - 1);
+                verify_code += verify_string.slice(random, random + 1);
+            }
+            verify.innerHTML = verify_code;
+        };
+        buttons[1].onclick = function () {
+            inputs[0].value = inputs[1].value = inputs[2].value = '';
+            verify.innerHTML = '点击获取验证码';
+        }
+    </script>
+</body>
+</html>
